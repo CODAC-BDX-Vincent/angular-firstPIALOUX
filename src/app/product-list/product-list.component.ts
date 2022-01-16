@@ -1,20 +1,58 @@
 import { Component } from '@angular/core';
-
+import { FormBuilder } from '@angular/forms';
 import { products } from '../products';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent {
+  constructor(private formBuilder: FormBuilder) {}
+  newDivs: addDivisions[] = [];
+  ListeNoms: Array<string> = [];
+  ListePrenoms: Array<string> = [];
   products = products;
+  checkoutForm = this.formBuilder.group({
+    name: '',
+    address: '',
+  });
 
-  share() {
-    window.alert('The product has been shared!');
+  onSubmit(): void {
+    // Process checkout data here
+
+    console.warn('Your order has been submitted', this.checkoutForm.value);
+    this.checkoutForm.reset();
+  }
+
+  allNoms() {
+    this.newDivs.push(new addDivisions(this.ListeNoms, 'Noms'));
+    window.alert('All Noms :' + this.ListeNoms);
+  }
+
+  allPrenoms() {
+    this.newDivs.push(new addDivisions(this.ListePrenoms, 'Prénoms'));
+    window.alert('All Prenoms : ' + this.ListePrenoms);
+  }
+
+  onNom(event: any) {
+    this.ListeNoms.push(event.target.value);
+  }
+
+  onPrenom(event: any) {
+    this.ListePrenoms.push(event.target.value);
   }
 }
+// Here you can define the elements
+export class addDivisions {
+  name: String | undefined;
+  liste: Array<string>;
 
+  constructor(liste: Array<string>, name: String) {
+    this.liste = liste;
+    this.name = name;
+  }
+}
 
 /*
 Copyright Google LLC. All Rights Reserved.
