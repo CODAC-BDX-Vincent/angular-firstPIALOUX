@@ -27,11 +27,13 @@ export class ProductListComponent {
 
   allNoms() {
     this.newDivs.push(new addDivisions(this.ListeNoms, 'Noms'));
+    console.log('All Noms :' + this.ListeNoms);
     window.alert('All Noms :' + this.ListeNoms);
   }
 
   allPrenoms() {
     this.newDivs.push(new addDivisions(this.ListePrenoms, 'Prénoms'));
+    console.log('All Prenom :' + this.ListePrenoms);
     window.alert('All Prenoms : ' + this.ListePrenoms);
   }
 
